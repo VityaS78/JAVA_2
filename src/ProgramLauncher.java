@@ -18,7 +18,7 @@ public class ProgramLauncher {
                 new Cat(2, "Vasya", Gender.MALE),
                 new Dog(3, "Жучка", Gender.FEMALE),
                 new Human(25, "Коля", Gender.MALE),
-                new Human(22, "Маша", Gender.FEMALE)
+                new Human(22, "Маша ", Gender.FEMALE)
         };
 
 
