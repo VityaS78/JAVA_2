@@ -1,37 +1,28 @@
 package lesson_3.HW_2;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 
 public class PhoneBook {
 
-    HashMap<String, HashSet<Integer>> phoneBook = new HashMap<>();
+    private HashMap<String, HashSet<Integer>> phoneBook;
 
     public PhoneBook() {
-//        HashMap<String, HashSet<Integer>> phoneBook= new HashMap<>();
+        phoneBook = new HashMap<>();
     }
 
     public void add(String name, int phoneNumber) {
-        HashSet<Integer> number = new HashSet<>();
-        if (phoneBook.get(name) == null) {
-            number.add(phoneNumber);
-            phoneBook.put(name, number);
-        } else {
-            number = phoneBook.get(name);
-            number.add(phoneNumber);
-            phoneBook.put(name, number);
-        }
+        if (phoneBook.get(name) == null) phoneBook.put(name, new HashSet<>(Arrays.asList(phoneNumber)));
+        else phoneBook.get(name).add(phoneNumber);
         System.out.println("Контакт добавлен в телефонную книгу");
         System.out.println();
+
     }
 
     public void get(String name) {
-        HashSet<Integer> number = new HashSet<>();
-        number = phoneBook.get(name);
         System.out.println("Номер абонента " + name + ":");
-        for (Integer num : number) {
-            System.out.println(num);
-        }
+        for (Integer num : phoneBook.get(name)) System.out.println(num);
         System.out.println();
     }
 }

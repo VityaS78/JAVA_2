@@ -9,9 +9,7 @@ package lesson_3;
  */
 
 import java.text.MessageFormat;
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.Map;
+import java.util.*;
 
 public class Main {
 
@@ -29,33 +27,24 @@ public class Main {
 
     private static HashMap createMap(String[] words) {
         HashMap<String, Integer> dupl = new HashMap<>();
-        int temp = 0;
-        for (String w : words) {
-            if (dupl.get(w) == null) {
-                dupl.put(w, 1);
-            } else {
-                temp = dupl.get(w);
-                dupl.put(w, ++temp);
-            }
-        }
+        for (String w : words)
+            if (dupl.get(w) == null) dupl.put(w, 1);
+            else dupl.put(w, dupl.get(w) + 1);
         return dupl;
     }
 
     private static void findUniqueWords(String[] words) {
         HashMap<String, Integer> dupl = createMap(words);
-
-        System.out.println("Слова, которые дублируются:");
-        for (Map.Entry<String, Integer> d : dupl.entrySet()) {
-            System.out.println(d.getKey());
-        }
+        System.out.println("Уникальные слова из заданного массива: ");
+        for (Map.Entry<String, Integer> d : dupl.entrySet()) System.out.println(d.getKey());
     }
 
     private static void findDupl(String[] words) {
         HashMap<String, Integer> dupl = createMap(words);
-        System.out.println("Уникальные слова из заданного массива:");
-        for (Map.Entry<String, Integer> d : dupl.entrySet())
-            if (d.getValue() > 1) {
+        System.out.println("Слова, которые дублируются: ");
+        for (Map.Entry<String, Integer> d : dupl.entrySet()) {
+            if (d.getValue() > 1)
                 System.out.println(MessageFormat.format("Слово : {0} ,встречается {1} раз", d.getKey(), d.getValue()));
-            }
+        }
     }
 }
