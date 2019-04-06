@@ -65,6 +65,9 @@ public class ClientHandler {
         while (true) {
             String strFromClient = in.readUTF();
             System.out.println("Сщщбщение от " + name + " : " + strFromClient);
+            if ("EXIT".equalsIgnoreCase(strFromClient)) {
+                return;
+            }
             server.distributeMsg(strFromClient);
         }
     }
